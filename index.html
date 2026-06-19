@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAVEAN CLOTHING | WEAR BETTER. LIVE BETTER.</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="loader-container" id="loader">
+        <div class="loader-content">
+            <h1 class="loader-logo">SAVEAN</h1>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeQuickView">&times;</span>
+            <div class="modal-body" id="quickViewBody"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="sizeGuideModal">
+        <div class="modal-content standard-modal">
+            <span class="close-modal" id="closeSizeGuide">&times;</span>
+            <h2>SIZE GUIDE</h2>
+            <p>All measurements are in inches. Standard regular/oversized fits apply.</p>
+            <table class="size-table">
+                <thead>
+                    <tr><th>Size</th><th>Chest</th><th>Waist</th><th>Length</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>S</td><td>36-38</td><td>30-32</td><td>27</td></tr>
+                    <tr><td>M</td><td>38-40</td><td>32-34</td><td>28</td></tr>
+                    <tr><td>L</td><td>42-44</td><td>36-38</td><td>29</td></tr>
+                    <tr><td>XL</td><td>46-48</td><td>40-42</td><td>30</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="menu-toggle" id="mobileMenuOpen">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="nav-brand">
+                <a href="#" class="nav-logo-link" data-page="home">SAVEAN</a>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <div class="mobile-menu-header">
+                    <span class="loader-logo">SAVEAN</span>
+                    <i class="fas fa-times" id="mobileMenuClose"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-item active" data-page="home">HOME</a></li>
+                    <li class="has-mega">
+                        <a href="#" class="nav-item" data-page="shop">SHOP <i class="fas fa-chevron-down nav-arrow"></i></a>
+                        <div class="mega-menu">
+                            <div class="mega-grid">
+                                <div class="mega-col">
+                                    <h4>TOPS</h4>
+                                    <ul>
+                                        <li><a href="#" class="filter-cat-link" data-cat="T-Shirts">T-Shirts</a></li>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Oversized T-Shirts">Oversized T-Shirts</a></li>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Hoodies">Hoodies</a></li>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Shirts">Shirts</a></li>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Jackets">Jackets</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-col">
+                                    <h4>BOTTOMS</h4>
+                                    <ul>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Jeans">Jeans</a></li>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Shorts">Shorts</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-col">
+                                    <h4>ESSENTIALS</h4>
+                                    <ul>
+                                        <li><a href="#" class="filter-cat-link" data-cat="Accessories">Accessories</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-col mega-banner">
+                                    <div class="mega-banner-img">
+                                        <div class="mega-banner-overlay">
+                                            <h5>ESSENTIALS OUT NOW</h5>
+                                            <a href="#" class="btn-underline filter-cat-link" data-cat="all">VIEW ALL</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="#" class="nav-item" data-page="about">ABOUT</a></li>
+                    <li><a href="#" class="nav-item" data-page="contact">CONTACT</a></li>
+                    <li><a href="#" class="nav-item" data-page="faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <div class="search-wrapper">
+                    <i class="fas fa-search nav-icon" id="searchIcon"></i>
+                    <div class="search-dropdown" id="searchDropdown">
+                        <input type="text" id="searchInput" placeholder="Search premium items...">
+                        <div class="search-results" id="searchResults"></div>
+                    </div>
+                </div>
+                <div class="nav-icon-wrapper" id="navProfileIcon">
+                    <i class="fas fa-user nav-icon" data-page="login"></i>
+                </div>
+                <div class="nav-icon-wrapper" data-page="wishlist">
+                    <i class="fas fa-heart nav-icon"></i>
+                    <span class="badge" id="wishlistBadge">0</span>
+                </div>
+                <div class="nav-icon-wrapper" data-page="cart">
+                    <i class="fas fa-shopping-bag nav-icon"></i>
+                    <span class="badge" id="cartBadge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-container">
+
+        <section id="page-home" class="app-page active-page">
+            <div class="hero-slider">
+                <div class="slide active-slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">THE NEW STANDARD</p>
+                        <h2 class="hero-title">WEAR BETTER.<br>LIVE BETTER.</h2>
+                        <a href="#" class="btn btn-primary" data-page="shop">DISCOVER COLLECTION</a>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80');">
+                    <div class="hero-content">
+                        <p class="hero-subtitle">HIGH LUXURY ESSENTIALS</p>
+                        <h2 class="hero-title">THE ARCHIVE<br>COLLECTION</h2>
+                        <a href="#" class="btn btn-primary" data-page="shop">EXPLORE ITEMS</a>
+                    </div>
+                </div>
+                <div class="slider-nav">
+                    <span class="slider-dot active-dot"></span>
+                    <span class="slider-dot"></span>
+                </div>
+            </div>
+
+            <section class="section section-dark flash-sale-section">
+                <div class="container text-center">
+                    <div class="flash-header">
+                        <h3 class="section-title">MID-SEASON FLASH SALE</h3>
+                        <div class="countdown-container" id="countdown">
+                            <div class="countdown-block"><span id="days">00</span><small>DAYS</small></div>
+                            <div class="countdown-block"><span id="hours">00</span><small>HRS</small></div>
+                            <div class="countdown-block"><span id="minutes">00</span><small>MINS</small></div>
+                            <div class="countdown-block"><span id="seconds">00</span><small>SECS</small></div>
+                        </div>
+                    </div>
+                    <div class="product-grid" id="flashSaleGrid"></div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h3 class="section-title text-center">SHOP BY CATEGORY</h3>
+                    <div class="category-grid">
+                        <div class="category-card filter-cat-link" data-cat="Oversized T-Shirts" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80');">
+                            <span>OVERSIZED TEES</span>
+                        </div>
+                        <div class="category-card filter-cat-link" data-cat="Hoodies" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80');">
+                            <span>HOODIES</span>
+                        </div>
+                        <div class="category-card filter-cat-link" data-cat="Jackets" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80');">
+                            <span>JACKETS</span>
+                        </div>
+                        <div class="category-card filter-cat-link" data-cat="Shirts" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80');">
+                            <span>SHIRTS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section-dark">
+                <div class="container">
+                    <div class="tab-header">
+                        <button class="tab-btn active-tab" data-tab="new">NEW ARRIVALS</button>
+                        <button class="tab-btn" data-tab="best">BEST SELLERS</button>
+                        <button class="tab-btn" data-tab="trending">TRENDING NOW</button>
+                    </div>
+                    <div class="product-grid m-top-40" id="homeTabsGrid"></div>
+                </div>
+            </section>
+
+            <section class="promo-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80');">
+                <div class="promo-content text-center">
+                    <h4>THE LUXURY MINIMALIST EDIT</h4>
+                    <p>Experience tailored refinement meticulously built for premium comfort and elevated styling layouts.</p>
+                    <a href="#" class="btn btn-secondary" data-page="shop">SHOP THE EDIT</a>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <h3 class="section-title text-center">CURATED CLIENT REVIEWS</h3>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="testimonial-text">"The oversized tees feel structured, ultra-heavy, and beautifully architectural. Absolutely unmatched quality in Sri Lanka."</p>
+                            <h5 class="testimonial-author">Rohan D. — Colombo</h5>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <p class="testimonial-text">"Premium packaging, quick delivery, and the luxury aesthetic feels premium and completely tailored. Highly recommended."</p>
+                            <h5 class="testimonial-author">Amara S. — Kandy</h5>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="page-shop" class="app-page">
+            <div class="shop-hero">
+                <h1>THE CATALOGUE</h1>
+                <p>Browse through our collection of premium crafted apparel.</p>
+            </div>
+            <div class="container shop-layout m-top-40">
+                <aside class="shop-sidebar" id="shopSidebar">
+                    <div class="sidebar-block">
+                        <h4>CATEGORIES</h4>
+                        <ul class="filter-list" id="catFilterList">
+                            <li class="active-filter" data-val="all">All Products</li>
+                            <li data-val="T-Shirts">T-Shirts</li>
+                            <li data-val="Oversized T-Shirts">Oversized T-Shirts</li>
+                            <li data-val="Hoodies">Hoodies</li>
+                            <li data-val="Shirts">Shirts</li>
+                            <li data-val="Jeans">Jeans</li>
+                            <li data-val="Shorts">Shorts</li>
+                            <li data-val="Jackets">Jackets</li>
+                            <li data-val="Accessories">Accessories</li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-block">
+                        <h4>PRICE RANGE</h4>
+                        <input type="range" id="priceRange" min="1000" max="20000" value="20000" class="premium-range">
+                        <div class="range-labels">
+                            <span>Rs. 1,000</span>
+                            <span id="priceDisplay">Rs. 20,000</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h4>SIZE</h4>
+                        <div class="filter-flex" id="sizeFilters">
+                            <span class="box-filter" data-val="S">S</span>
+                            <span class="box-filter" data-val="M">M</span>
+                            <span class="box-filter" data-val="L">L</span>
+                            <span class="box-filter" data-val="XL">XL</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h4>COLOR</h4>
+                        <div class="filter-flex" id="colorFilters">
+                            <span class="box-filter" data-val="Black">Black</span>
+                            <span class="box-filter" data-val="White">White</span>
+                            <span class="box-filter" data-val="Charcoal">Charcoal</span>
+                            <span class="box-filter" data-val="Gray">Gray</span>
+                        </div>
+                    </div>
+                    <div class="sidebar-block">
+                        <h4>BRAND / COLLECTION</h4>
+                        <ul class="filter-list" id="brandFilterList">
+                            <li class="active-filter" data-val="all">All Lineups</li>
+                            <li data-val="Luxury Essentials">Luxury Essentials</li>
+                            <li data-val="Premium Streetwear">Premium Streetwear</li>
+                            <li data-val="Minimalist">Minimalist</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary w-100" id="clearFiltersBtn">RESET FILTERS</button>
+                </aside>
+
+                <div class="shop-main">
+                    <div class="shop-sorting-bar">
+                        <span id="productCount">Showing 30 products</span>
+                        <div class="sort-select-wrapper">
+                            <select id="sortSelect" class="premium-select">
+                                <option value="newest">Sort by: Newest</option>
+                                <option value="popular">Sort by: Popularity</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="product-grid" id="shopGrid"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-product-details" class="app-page">
+            <div class="container m-top-40" id="detailsContainer"></div>
+        </section>
+
+        <section id="page-cart" class="app-page">
+            <div class="container container-small m-top-40">
+                <h2 class="section-title text-center">YOUR SHOPPING BAG</h2>
+                <div class="cart-layout m-top-40" id="cartLayoutWrapper">
+                    <div class="cart-items-panel" id="cartItemsContainer"></div>
+                    <div class="cart-summary-panel">
+                        <div class="summary-card">
+                            <h3>ORDER SUMMARY</h3>
+                            <hr class="premium-hr">
+                            <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">Rs. 0.00</span></div>
+                            <div class="summary-row"><span>Estimated Shipping</span><span>Rs. 450.00</span></div>
+                            <hr class="premium-hr">
+                            <div class="summary-row total-row"><span>Total</span><span id="summaryTotal">Rs. 0.00</span></div>
+                            <button class="btn btn-primary w-100 m-top-20" data-page="checkout">PROCEED TO CHECKOUT</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center empty-state hidden" id="cartEmptyState">
+                    <i class="fas fa-shopping-bag large-icon"></i>
+                    <p>Your premium shopping bag is currently empty.</p>
+                    <button class="btn btn-primary m-top-20" data-page="shop">CONTINUE SHOPPING</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-checkout" class="app-page">
+            <div class="container m-top-40">
+                <h2 class="section-title text-center">SECURE CHECKOUT</h2>
+                <div class="checkout-grid m-top-40">
+                    <div class="checkout-form-panel">
+                        <form id="checkoutForm" onsubmit="event.preventDefault();">
+                            <h3>SHIPPING ADDRESS</h3>
+                            <div class="form-row">
+                                <div class="form-group"><label>First Name *</label><input type="text" class="premium-input" required></div>
+                                <div class="form-group"><label>Last Name *</label><input type="text" class="premium-input" required></div>
+                            </div>
+                            <div class="form-group"><label>Street Address *</label><input type="text" class="premium-input" placeholder="House number and street name" required></div>
+                            <div class="form-group"><label>Town / City *</label><input type="text" class="premium-input" required></div>
+                            <div class="form-row">
+                                <div class="form-group"><label>Postal Code *</label><input type="text" class="premium-input" required></div>
+                                <div class="form-group"><label>Phone Number *</label><input type="tel" class="premium-input" required></div>
+                            </div>
+                            <div class="form-group"><label>Email Address *</label><input type="email" class="premium-input" required></div>
+
+                            <h3 class="m-top-40">PAYMENT SYSTEM</h3>
+                            <div class="payment-methods">
+                                <label class="payment-label">
+                                    <input type="radio" name="payment" value="cod" checked>
+                                    <span>Cash On Delivery (COD)</span>
+                                </label>
+                                <label class="payment-label">
+                                    <input type="radio" name="payment" value="card">
+                                    <span>Credit / Debit Card (Visa, Mastercard)</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 m-top-40" id="placeOrderBtn">PLACE PREMIUM ORDER</button>
+                        </form>
+                    </div>
+                    <div class="checkout-summary-panel">
+                        <div class="summary-card">
+                            <h3>YOUR ORDER</h3>
+                            <hr class="premium-hr">
+                            <div id="checkoutItemsList"></div>
+                            <hr class="premium-hr">
+                            <div class="summary-row"><span>Subtotal</span><span id="checkoutSubtotal">Rs. 0.00</span></div>
+                            <div class="summary-row"><span>Shipping</span><span>Rs. 450.00</span></div>
+                            <hr class="premium-hr">
+                            <div class="summary-row total-row"><span>Total Cost</span><span id="checkoutTotal">Rs. 0.00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-wishlist" class="app-page">
+            <div class="container m-top-40">
+                <h2 class="section-title text-center">MY SAVED WISHLIST</h2>
+                <div class="product-grid m-top-40" id="wishlistGrid"></div>
+                <div class="text-center empty-state hidden" id="wishlistEmptyState">
+                    <i class="fas fa-heart large-icon"></i>
+                    <p>No high-fashion garments saved yet.</p>
+                    <button class="btn btn-primary m-top-20" data-page="shop">DISCOVER PRODUCTS</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-login" class="app-page">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <h2>SIGN IN</h2>
+                    <p class="auth-subtitle">Welcome back to SAVEAN CLOTHING</p>
+                    <form id="loginForm">
+                        <div class="form-group"><label>Email address *</label><input type="email" class="premium-input" required></div>
+                        <div class="form-group"><label>Password *</label><input type="password" class="premium-input" required></div>
+                        <p class="forgot-link text-right"><span data-page="forgot">Forgot Password?</span></p>
+                        <button type="submit" class="btn btn-primary w-100 m-top-20">LOG IN</button>
+                    </form>
+                    <p class="auth-switch-text">New user? <span data-page="register">Create an account</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-register" class="app-page">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <h2>CREATE ACCOUNT</h2>
+                    <p class="auth-subtitle">Join the premium layout circle.</p>
+                    <form id="registerForm">
+                        <div class="form-group"><label>Full Name *</label><input type="text" class="premium-input" required></div>
+                        <div class="form-group"><label>Email address *</label><input type="email" class="premium-input" required></div>
+                        <div class="form-group"><label>Password *</label><input type="password" class="premium-input" required></div>
+                        <button type="submit" class="btn btn-primary w-100 m-top-20">REGISTER</button>
+                    </form>
+                    <p class="auth-switch-text">Already have an account? <span data-page="login">Sign in</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-forgot" class="app-page">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <h2>RESET PASSWORD</h2>
+                    <p class="auth-subtitle">Enter your premium verified email to proceed.</p>
+                    <form id="forgotForm">
+                        <div class="form-group"><label>Email address *</label><input type="email" class="premium-input" required></div>
+                        <button type="submit" class="btn btn-primary w-100 m-top-20">SEND RESET LINK</button>
+                    </form>
+                    <p class="auth-switch-text"><span data-page="login">Return to Sign In</span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-dashboard" class="app-page">
+            <div class="container m-top-40">
+                <h2 class="section-title">CLIENT ACCOUNT DASHBOARD</h2>
+                <div class="dashboard-layout m-top-40">
+                    <aside class="dashboard-sidebar">
+                        <div class="user-info-summary">
+                            <i class="fas fa-user-circle"></i>
+                            <h4 id="dashUserTitle">Premium Client</h4>
+                        </div>
+                        <ul class="dash-tabs">
+                            <li class="active-dash-tab" data-dash="orders"><i class="fas fa-box"></i> Order History</li>
+                            <li data-dash="addresses"><i class="fas fa-map-marker-alt"></i> Saved Addresses</li>
+                            <li data-dash="settings"><i class="fas fa-cog"></i> Profile Settings</li>
+                            <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</li>
+                        </ul>
+                    </aside>
+                    <div class="dashboard-content">
+                        <div class="dash-panel active-dash-panel" id="dash-orders">
+                            <h3>ORDER ARCHIVE</h3>
+                            <div class="m-top-20" id="dashOrdersContainer">
+                                <p class="text-muted">No premium purchases made yet.</p>
+                            </div>
+                        </div>
+                        <div class="dash-panel" id="dash-addresses">
+                            <h3>SAVED ADDRESSES</h3>
+                            <div class="address-grid m-top-20">
+                                <div class="address-card default-address">
+                                    <span class="addr-badge">DEFAULT SHIPPING</span>
+                                    <h5>John Doe</h5>
+                                    <p>45, Luxury Lane, Colombo 03</p>
+                                    <p>Sri Lanka</p>
+                                    <p>0771234567</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dash-panel" id="dash-settings">
+                            <h3>PROFILE PARAMETERS</h3>
+                            <form class="m-top-20" onsubmit="event.preventDefault(); alert('Profile updated successfully.');">
+                                <div class="form-row">
+                                    <div class="form-group"><label>Full Name</label><input type="text" class="premium-input" value="John Doe"></div>
+                                    <div class="form-group"><label>Email Address</label><input type="email" class="premium-input" value="client@savean.com"></div>
+                                </div>
+                                <div class="form-group"><label>Current Password</label><input type="password" class="premium-input"></div>
+                                <div class="form-group"><label>New Password</label><input type="password" class="premium-input"></div>
+                                <button type="submit" class="btn btn-primary m-top-20">SAVE CHANGES</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-about" class="app-page">
+            <div class="shop-hero" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1920&q=80');">
+                <h1>THE SAVEAN MANIFESTO</h1>
+                <p>WEAR BETTER. LIVE BETTER.</p>
+            </div>
+            <div class="container container-small m-top-40 text-center text-block-p">
+                <h2>OUR IDENTITY</h2>
+                <p class="m-top-20">Founded with a vision to redefine structured everyday apparel, SAVEAN CLOTHING creates high-quality garments featuring distinct silhouettes, heavy fabrics, and luxury craftsmanship for the modern minimalist.</p>
+                <p>We blend heavy aesthetics inspired by architectural precision with the ultimate layout requirements of ready-to-wear street fashion.</p>
+            </div>
+        </section>
+
+        <section id="page-contact" class="app-page">
+            <div class="container container-small m-top-40">
+                <h2 class="section-title text-center">GET IN TOUCH</h2>
+                <p class="text-center text-muted">For premium orders, collaboration inquires, or support lines.</p>
+                <div class="contact-grid m-top-40">
+                    <div class="contact-info">
+                        <h3>SAVEAN STUDIO</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 100, High Fashion Block, Colombo, Sri Lanka</p>
+                        <p><i class="fas fa-phone"></i> +94 11 234 5678</p>
+                        <p><i class="fas fa-envelope"></i> concierge@saveanclothing.com</p>
+                    </div>
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message dispatched. Our concierge will respond shortly.'); this.reset();">
+                        <div class="form-group"><label>Name</label><input type="text" class="premium-input" required></div>
+                        <div class="form-group"><label>Email</label><input type="email" class="premium-input" required></div>
+                        <div class="form-group"><label>Message</label><textarea class="premium-input text-area-input" rows="5" required></textarea></div>
+                        <button type="submit" class="btn btn-primary w-100">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-faq" class="app-page">
+            <div class="container container-small m-top-40">
+                <h2 class="section-title text-center">FREQUENTLY ASKED QUESTIONS</h2>
+                <div class="faq-wrapper m-top-40">
+                    <div class="faq-item">
+                        <div class="faq-question">What is your localized delivery timeline? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer"><p>We dispatch all premium garments via courier networks within 2-4 working days across Sri Lanka.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Are the oversized T-shirts true to size? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer"><p>Yes, they are custom engineered with a premium heavy drop-shoulder structure. Select your usual regular standard size.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">What is your luxury return policy? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer"><p>We offer premium client exchanges within 7 days of arrival, provided all structural seals and product tags remain untouched.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-privacy" class="app-page">
+            <div class="container container-small m-top-40 text-block-p">
+                <h2>PRIVACY POLICY</h2>
+                <p class="m-top-20">At SAVEAN CLOTHING, accessible via our premium web structures, your privacy data layout constitutes our fundamental priority framework.</p>
+                <p>We process data safely to facilitate premium ordering systems, high security tracking parameters, and custom brand notifications.</p>
+            </div>
+        </section>
+
+        <section id="page-terms" class="app-page">
+            <div class="container container-small m-top-40 text-block-p">
+                <h2>TERMS &amp; CONDITIONS</h2>
+                <p class="m-top-20">By accessing the online luxury layout configuration of SAVEAN CLOTHING, you authorize strict agreement terms with premium usage protocols.</p>
+                <p>All structured designs, premium architectural silhouettes, digital visuals, and text assets belong strictly to SAVEAN Studio operations.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <section class="section section-dark border-top-luxury" id="globalProductRecommendations">
+        <div class="container">
+            <h3 class="section-title text-center">RECOMMENDED FOR YOU</h3>
+            <div class="product-grid m-top-40" id="recommendationsGrid"></div>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container text-center">
+            <h3>JOIN THE INSIDER CIRCLE</h3>
+            <p>Subscribe to receive early structural drop notifications, premium collection releases, and luxury edits.</p>
+            <form class="newsletter-form m-top-20" id="newsletterForm">
+                <input type="email" placeholder="ENTER YOUR EMAIL" class="newsletter-input" required>
+                <button type="submit" class="btn btn-primary">SUBSCRIBE</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <span class="loader-logo">SAVEAN</span>
+                <p class="m-top-20 tagline-footer">WEAR BETTER. LIVE BETTER.</p>
+                <p class="contact-details-footer">Studio HQ: Colombo, Sri Lanka<br>Email: concierge@saveanclothing.com</p>
+                <div class="social-links m-top-20">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>CATEGORIES</h4>
+                <ul>
+                    <li><a href="#" class="filter-cat-link" data-cat="T-Shirts">T-Shirts</a></li>
+                    <li><a href="#" class="filter-cat-link" data-cat="Oversized T-Shirts">Oversized T-Shirts</a></li>
+                    <li><a href="#" class="filter-cat-link" data-cat="Hoodies">Hoodies</a></li>
+                    <li><a href="#" class="filter-cat-link" data-cat="Shirts">Shirts</a></li>
+                    <li><a href="#" class="filter-cat-link" data-cat="Jackets">Jackets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <ul>
+                    <li><a href="#" data-page="shop">Catalogue Shop</a></li>
+                    <li><a href="#" data-page="about">Our Story</a></li>
+                    <li><a href="#" data-page="contact">Contact Studio</a></li>
+                    <li><a href="#" data-page="faq">FAQs Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>LEGAL</h4>
+                <ul>
+                    <li><a href="#" data-page="privacy">Privacy Document</a></li>
+                    <li><a href="#" data-page="terms">Terms of Operations</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 SAVEAN CLOTHING. Crafted Architecture Apparel. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+              </html>
